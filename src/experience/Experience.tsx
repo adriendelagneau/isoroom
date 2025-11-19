@@ -5,10 +5,13 @@ import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
+import CameraManager from "./components/CameraManager";
+import InteractionHandler from "./components/InteractionHandler";
 import Scene from "./Scene";
 
 const Experience = () => {
   const pointer = useRef(new THREE.Vector2());
+  const cameraRef = useRef<THREE.OrthographicCamera>(null);
 
   // Track mouse movement and update pointer position
   useEffect(() => {
@@ -33,8 +36,15 @@ const Experience = () => {
         background: "transparent",
       }}
     >
-      <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={60} />
+      <OrthographicCamera
+        makeDefault
+        position={[0, 0, 10]}
+        zoom={60}
+        ref={cameraRef}
+      />
       <Scene pointer={pointer} />
+      <InteractionHandler />
+      <CameraManager camera={cameraRef} />
     </Canvas>
   );
 };

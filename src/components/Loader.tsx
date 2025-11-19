@@ -6,11 +6,21 @@ import clsx from "clsx";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 
+import useExperienceUIStore from "@/store/useExperienceUIStore";
+
 export default function Loader() {
   const { progress } = useProgress();
   const [displayProgress, setDisplayProgress] = useState(0);
   const [canEnter, setCanEnter] = useState(false);
   const [isDone, setIsDone] = useState(false);
+
+  // ✅ Pull setters from store
+  const setAssetsLoaded = useExperienceUIStore((s) => s.setAssetsLoaded);
+  const setIntroFinished = useExperienceUIStore((s) => s.setIntroFinished);
+  const setHasUserEntered = useExperienceUIStore((s) => s.setHasUserEntered);
+  const setExperienceStarted = useExperienceUIStore(
+    (s) => s.setExperienceStarted
+  );
 
   const topRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -29,6 +39,7 @@ export default function Loader() {
     () => {
       if (progress === 100 && cardRef.current && !canEnter) {
         setCanEnter(true);
+        setAssetsLoaded(true); // mark assets loaded
 
         gsap.to(cardRef.current, {
           rotationX: -180,
@@ -46,9 +57,13 @@ export default function Loader() {
   const handleEnter = () => {
     if (!topRef.current || !bottomRef.current) return;
 
+    setHasUserEntered(true); // mark user entered
+
     gsap
       .timeline({
         onComplete: () => {
+          setIntroFinished(true); // intro animation done
+          setExperienceStarted(true); // scene ready
           setIsDone(true); // hide loader
         },
       })
