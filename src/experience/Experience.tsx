@@ -2,7 +2,7 @@
 
 import { OrthographicCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 import * as THREE from "three";
 
 import CameraManager from "./components/CameraManager";

@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 import { interactiveObjects } from "@/data/interactiveObjects";
+import useExperienceUIStore from "@/store/useExperienceUIStore";
 import useInteractionStore from "@/store/useInteractionSrore";
 
 const InteractionHandler = () => {
@@ -13,12 +14,15 @@ const InteractionHandler = () => {
   const raycaster = useRef(new THREE.Raycaster());
   const pointer = useRef(new THREE.Vector2());
 
+  const experienceStarted = useExperienceUIStore((s) => s.experienceStarted);
   const { setHoveredObject, setClickedObject } = useInteractionStore();
 
   const interactiveNames = interactiveObjects.map((o) => o.name.toLowerCase());
 
   /** 🎯 Pointer move on CANVAS only */
   useEffect(() => {
+    if (!experienceStarted) return; // ⛔ DO NOTHING before start
+
     const canvas = gl.domElement;
 
     const handlePointerMove = (event: PointerEvent) => {
@@ -30,10 +34,15 @@ const InteractionHandler = () => {
 
     canvas.addEventListener("pointermove", handlePointerMove);
     return () => canvas.removeEventListener("pointermove", handlePointerMove);
-  }, [gl.domElement]);
+  }, [gl.domElement, experienceStarted]);
 
   /** 🧲 Hover detection each frame */
   useFrame(() => {
+    if (!experienceStarted) {
+      document.body.style.cursor = "auto";
+      return; // ⛔ skip raycasting
+    }
+
     raycaster.current.setFromCamera(pointer.current, camera);
     const intersects = raycaster.current.intersectObjects(scene.children, true);
 
@@ -47,6 +56,8 @@ const InteractionHandler = () => {
 
   /** 🖱️ Click */
   useEffect(() => {
+    if (!experienceStarted) return; // ⛔ skip until ready
+
     const canvas = gl.domElement;
 
     const handleClick = () => {
@@ -61,7 +72,7 @@ const InteractionHandler = () => {
 
     canvas.addEventListener("click", handleClick);
     return () => canvas.removeEventListener("click", handleClick);
-  }, [gl.domElement, setClickedObject]);
+  }, [gl.domElement, experienceStarted, setClickedObject]);
 
   return null;
 };

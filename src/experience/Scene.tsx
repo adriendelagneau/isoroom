@@ -44,6 +44,7 @@ const Scene = ({ pointer }: { pointer: React.RefObject<THREE.Vector2> }) => {
           {/* Hit-Boxes */}
           <HitBoxes />
 
+          {/* Room */}
           <Room_1 />
           <Room_2 />
           <Room_3 />
