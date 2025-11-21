@@ -27,7 +27,7 @@ const Plane: React.FC<PlaneProps> = ({ position, planeDepth, planeWidth }) => {
   useFrame(() => {
     if (!meshRef.current) return;
 
-    const targetOpacity = hovered ? 0.8 : 1;
+    const targetOpacity = hovered ? 0.8 : 0;
     const lerpFactor = hovered ? 0.5 : 0.15;
 
     const newOpacity = THREE.MathUtils.lerp(opacity, targetOpacity, lerpFactor);
