@@ -71,13 +71,13 @@ export const interactiveObjects: InteractiveObject[] = [
       zoom: 226,
     },
     tablet: {
-      targetPosition: [5.29, 2.83, 10],
-      targetRotation: [0, 0.7484, 0.148407],
+      targetPosition: [4.8, 2.83, 10],
+      targetRotation: [0, 0.7484, 0.15407],
       zoom: 180,
     },
     mobile: {
-      targetPosition: [5.2, 2.55, 10],
-      targetRotation: [0, 0.758407, 0.14807],
+      targetPosition: [4.7, 2.55, 10],
+      targetRotation: [0, 0.758407, 0.155],
       zoom: 145,
     },
     title: "Clock :",
@@ -87,7 +87,7 @@ export const interactiveObjects: InteractiveObject[] = [
     name: "Monkey",
     desktop: {
       targetPosition: [-3.28, 2.71, 10],
-      targetRotation: [0, -0.72156, -0.148556],
+      targetRotation: [0, -0.72156, -0.161],
       zoom: 206,
     },
     tablet: {
@@ -128,17 +128,17 @@ export const interactiveObjects: InteractiveObject[] = [
   {
     name: "Library",
     desktop: {
-      targetPosition: [0.0299, 0.483, 10],
-      targetRotation: [0, -0.75156, -0.15156],
-      zoom: 226,
+      targetPosition: [-0.5, 0.3, 10],
+      targetRotation: [0.1, -0.75156, -0.088],
+      zoom: 256,
     },
     tablet: {
-      targetPosition: [-1.7, 0.38, 10],
+      targetPosition: [-2.5, 0.38, 10],
       targetRotation: [0.04807, -0.80156, -0.12159],
       zoom: 215,
     },
     mobile: {
-      targetPosition: [-2.51, 0.41, 10],
+      targetPosition: [-3, 0.41, 10],
       targetRotation: [0.048407, -0.80156, -0.125],
       zoom: 195,
     },
@@ -202,18 +202,18 @@ export const interactiveObjects: InteractiveObject[] = [
     name: "Photos",
     desktop: {
       targetPosition: [9.47, 3.04, 10],
-      targetRotation: [0, 0.668407, 0.148407],
+      targetRotation: [0, 0.68407, 0.16],
       zoom: 226,
     },
 
     tablet: {
-      targetPosition: [10.94, 2.9, 10],
-      targetRotation: [0, 0.7484, 0.148407],
+      targetPosition: [10, 2.9, 10],
+      targetRotation: [0, 0.7484, 0.163],
       zoom: 180,
     },
     mobile: {
-      targetPosition: [11.49, 2.83, 10],
-      targetRotation: [-0.00159, 0.768407, 0.158407],
+      targetPosition: [10.6, 2.83, 10],
+      targetRotation: [-0.00159, 0.768407, 0.168],
       zoom: 145,
     },
     title: "Projets :",

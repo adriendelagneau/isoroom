@@ -86,7 +86,7 @@ const SidebarContact: React.FC<SidebarContactProps> = ({ object }) => {
       </p>
       {/* Download button (animated via .download-btn) */}
       <Button className="download-btn w-full opacity-0">
-        <a href="/pdf/resume.pdf" download>
+        <a href="/pdf/visit-card.pdf" download>
           Carte De Visite
         </a>
       </Button>

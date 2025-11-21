@@ -26,7 +26,7 @@ void main(){
   smoke*=smoothstep(1.,.3,vUv.y);
   
   gl_FragColor=vec4(1.,.878,.761,smoke);
-  gl_FragColor=vec4(1.0 ,0.0, 0.0, 1.0);
+  // gl_FragColor=vec4(1.0 ,0.0, 0.0, 1.0);
 
   
 }

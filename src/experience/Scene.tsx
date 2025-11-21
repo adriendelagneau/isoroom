@@ -4,17 +4,20 @@ import * as THREE from "three";
 
 import useInteractionStore from "@/store/useInteractionSrore";
 
+import GridPlanes from "./components/GridPlanes";
 import HitBoxes from "./components/models/Hit-boxes";
 import Room_1 from "./components/models/Room-1";
 import Room_2 from "./components/models/Room-2";
 import Room_3 from "./components/models/Room-3";
 import Room_4 from "./components/models/Room-4";
+import MorphParticles from "./components/morphing/Particles";
+import Smoke from "./components/smoke.tsx/Smoke";
 
 const Scene = ({ pointer }: { pointer: React.RefObject<THREE.Vector2> }) => {
   const groupRef = useRef<THREE.Group>(null!);
   const rotationX = useRef(0);
   const rotationY = useRef(0);
-
+  const gridPlanesRef = useRef(null);
   const { clickedObject } = useInteractionStore();
 
   // Animate scene rotation based on pointer position — ONLY if experience has begun
@@ -36,19 +39,36 @@ const Scene = ({ pointer }: { pointer: React.RefObject<THREE.Vector2> }) => {
   return (
     <Suspense fallback={null}>
       <group
-        rotation={[Math.PI / 14, 0.02, 0]}
+        rotation={[Math.PI / 14, 0, 0]}
         position={[0, -4.6, 0]}
         scale={1.7}
       >
         <group ref={groupRef}>
-          {/* Hit-Boxes */}
-          <HitBoxes />
-
+          {/* GridPlanes */}
+          <group rotation={[0, Math.PI / 4, 0]}>
+            <GridPlanes
+              ref={gridPlanesRef}
+              position={[12, -1, -15]}
+              rows={20}
+              columns={20}
+              planeWidth={2.5}
+              planeDepth={2.5}
+              spacing={0}
+            />
+          </group>
           {/* Room */}
           <Room_1 />
           <Room_2 />
           <Room_3 />
           <Room_4 />
+          {/* Hit-Boxes */}
+          <HitBoxes />
+
+          {/* Smoke */}
+          <Smoke />
+
+          {/* Particles */}
+          <MorphParticles />
         </group>
       </group>
     </Suspense>
