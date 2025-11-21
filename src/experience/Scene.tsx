@@ -51,8 +51,8 @@ const Scene = ({ pointer }: { pointer: React.RefObject<THREE.Vector2> }) => {
               position={[0, -2, 0]}
               rows={25}
               columns={25}
-              planeWidth={3}
-              planeDepth={3}
+              planeWidth={2.5}
+              planeDepth={2.5}
               spacing={0}
             />
           </group>
