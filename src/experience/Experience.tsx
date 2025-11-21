@@ -5,7 +5,6 @@ import { Canvas } from "@react-three/fiber";
 import { useRef, useEffect } from "react";
 import * as THREE from "three";
 
-import CameraGUI from "./components/CameraGUI";
 import CameraManager from "./components/CameraManager";
 import InteractionHandler from "./components/InteractionHandler";
 import Scene from "./Scene";
@@ -46,7 +45,6 @@ const Experience = () => {
       <Scene pointer={pointer} />
       <InteractionHandler />
       <CameraManager camera={cameraRef} />
-      <CameraGUI cameraRef={cameraRef} />
     </Canvas>
   );
 };
